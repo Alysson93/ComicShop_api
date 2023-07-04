@@ -4,6 +4,7 @@ public class AppDbContext : DbContext
 {
 
 	public DbSet<Comic> Comics { get; set; }
+	public DbSet<User> Users { get; set; }
 
 	public AppDbContext(DbContextOptions<AppDbContext> options)
 		: base(options) {}
@@ -19,6 +20,12 @@ public class AppDbContext : DbContext
 		builder.Entity<Comic>().Property(c => c.Price).IsRequired();
 		builder.Entity<Comic>().Property(c => c.Quantity).IsRequired();
 		builder.Entity<Comic>().Property(c => c.IsRare).HasDefaultValue(false);
+	
+		builder.Entity<User>().Property(u => u.Email).IsRequired().HasMaxLength(50);
+		builder.Entity<User>().Property(u => u.Password).IsRequired().HasMaxLength(30);
+		builder.Entity<User>().Property(u => u.Name).IsRequired().HasMaxLength(50);
+		builder.Entity<User>().Property(u => u.IsAdmin).IsRequired().HasDefaultValue(false);
+
 	}
 
 

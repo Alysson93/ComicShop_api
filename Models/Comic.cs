@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 public class Comic
 {
 
@@ -15,7 +13,7 @@ public class Comic
 
 }
 
-public record CreateComicDto (
+public record CreateComicDto(
 	string Title,
 	int Issue,
 	string Author,
