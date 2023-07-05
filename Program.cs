@@ -10,6 +10,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 ));
 builder.Services.AddScoped<ComicService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<CouponService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -30,5 +31,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/", async context => {
+    var filePath = "./index.html";
+    await context.Response.SendFileAsync(filePath);
+});
 
 app.Run();
