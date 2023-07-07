@@ -20,7 +20,7 @@ public class CouponService : ICouponService
 		Random random = new Random();
 		List<bool> rareoptions = new List<bool> { false, false, false, false, false, true, false, false, false, false };
 		List<int> discountoptions = new List<int> {
-			10, 10, 10, 10, 10, 
+			10, 10, 10, 10, 10,
 			20, 20, 20, 20, 30,
 			30, 30, 40, 40, 50
 		};

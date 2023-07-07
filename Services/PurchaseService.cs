@@ -37,7 +37,7 @@ public class PurchaseService : IPurchaseService
 		Coupon coupon = await new CouponService(context).ReadByCode(data.Coupon);
 		if (coupon != null) {
 			if (comic.IsRare && !coupon.IsRare) discount = 1;
-			else discount = coupon.Discount / 100;
+			else discount = (float)coupon.Discount / 100;
 		}
 
 		Purchase purchase = new Purchase
