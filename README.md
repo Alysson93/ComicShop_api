@@ -11,9 +11,9 @@
 	<li>Crie o arquivo "appsettings.Development.json"</li>
 	<li>Adicione as segintes linhas no arquivo, lembrando de substituir as informações genéricas pelas informações reais do seu banco de dados:</li>
 	<pre>
-	{
-  		"ConnectionString": "Host=localhost;Database=comicshop;Username=root;Password="
-	}
+{
+  	"ConnectionString": "Host=localhost;Database=comicshop;Username=root;Password="
+}
 	</pre>
 	<li>Ececute o comando "dotnet restore"</li>
 	<li>Ececute o comando "dotnet tool restore"</li>
