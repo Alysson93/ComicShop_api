@@ -12,3 +12,10 @@ public class Purchase
 	public float TotalValue { get; set; }
 
 }
+
+public record PurchaseDto(
+	Guid ComicId,
+	Guid UserId,
+	string Coupon,
+	int Quantity
+);

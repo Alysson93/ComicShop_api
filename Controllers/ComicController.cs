@@ -34,7 +34,7 @@ public class ComicController : ControllerBase
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         Comic comic = await comicService.Create(c);
-        return CreatedAtAction(nameof(GetById), new { id = comic.Id }, comic.Id);
+        return CreatedAtAction(nameof(GetById), new { id = comic.Id }, comic);
     }
 
     [HttpPut("{id}")]

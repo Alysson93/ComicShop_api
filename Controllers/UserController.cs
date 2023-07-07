@@ -14,6 +14,22 @@ public class UserController : ControllerBase
         this.userService = userService;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        List<User> users = await userService.Read();
+        return Ok(users);
+    }
+
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById([FromRoute] Guid id)
+    {
+        User user = await userService.ReadById(id);
+        if (user == null) return NotFound();
+        return Ok(user);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] CreateUserDto u)
     {
