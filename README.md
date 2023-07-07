@@ -10,11 +10,11 @@
 	<li>No terminal, navegue até o diretório raiz do projeto clonado em sua máquina.</li>
 	<li>Crie o arquivo "appsettings.Development.json"</li>
 	<li>Adicione as segintes linhas no arquivo, lembrando de substituir as informações genéricas pelas informações reais do seu banco de dados:</li>
-		<pre>
-		{
-  			"ConnectionString": "Host=localhost;Database=comicshop;Username=root;Password="
-		}
-		</pre>
+	<pre>
+	{
+  		"ConnectionString": "Host=localhost;Database=comicshop;Username=root;Password="
+	}
+	</pre>
 	<li>Ececute o comando "dotnet restore"</li>
 	<li>Ececute o comando "dotnet tool restore"</li>
 	<li>Execute o comando "dotnet ef database update"</li>
@@ -26,14 +26,14 @@
 <ul>
 	<li>Cadastro de quadrinhos;</li>
 	<li>Leitura de quadrinhos;</li>
-	<li>Leitura de um quadrinho específico a partir do Id</li>
-	<li>Atualização de um quadrinho</li>
-	<li>Remoção de um quadrinho</li>
-	<li>Cadastro de usuários</li>
-	<li>Login de usuários</li>
-	<li>Leitura de usuários</li>
-	<li>Leitura de um usuário específico a partir do seu Id</li>
-	<li>Compra de quadrinhos</li>
-	<li>Leitura da lista de compras de um usuário específico</li>
-	<li>Leitura do histórico de vendas de um quadrinho específico</li>
+	<li>Leitura de um quadrinho específico a partir do Id;</li>
+	<li>Atualização de um quadrinho;</li>
+	<li>Remoção de um quadrinho;</li>
+	<li>Cadastro de usuários;</li>
+	<li>Login de usuários;</li>
+	<li>Leitura de usuários;</li>
+	<li>Leitura de um usuário específico a partir do seu Id;</li>
+	<li>Compra de quadrinhos;</li>
+	<li>Leitura da lista de compras de um usuário específico;</li>
+	<li>Leitura do histórico de vendas de um quadrinho específico;</li>
 </ul>
