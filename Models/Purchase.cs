@@ -2,9 +2,7 @@ public class Purchase
 {
 
 	public Guid Id { get; set; }
-	public Comic Comic { get; set; }
 	public Guid ComicId { get; set; }
-	public User User { get; set; }
 	public Guid UserId { get; set; }
 	public string Coupon { get; set; }
 	public DateTime Date { get; set; }
