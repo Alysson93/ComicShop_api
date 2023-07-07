@@ -20,10 +20,11 @@ public class UserService : IUserService
 
 	public async Task<User> Create(CreateUserDto u)
 	{
+		string password = BCrypt.Net.BCrypt.HashPassword(u.Password);
         var user = new User
         {
             Email = u.Email,
-            Password = u.Password,
+            Password = password,
             Name = u.Name
         };
         await context.Users.AddAsync(user);
@@ -51,7 +52,10 @@ public class UserService : IUserService
 
 	public async Task<User> Login(LogUserDto u)
 	{
-		User user = await context.Users.Where(user => user.Email == u.Email && user.Password == u.Password).Take(1).SingleOrDefaultAsync();
+		User user = await context.Users.Where(user => user.Email == u.Email).Take(1).SingleOrDefaultAsync();
+		if (user == null) return user;
+		if (BCrypt.Net.BCrypt.Verify(u.Password, user.Password)) return user;
+		user = null;
 		return user;
 	}
 

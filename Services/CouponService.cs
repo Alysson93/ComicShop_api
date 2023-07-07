@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 public interface ICouponService {
 	public Task<Coupon> Generate();
+	public Task<Coupon> ReadByCode(string code);
 }
 
 public class CouponService : ICouponService
@@ -19,11 +20,9 @@ public class CouponService : ICouponService
 		Random random = new Random();
 		List<bool> rareoptions = new List<bool> { false, false, false, false, false, true, false, false, false, false };
 		List<int> discountoptions = new List<int> {
-			10, 10, 10, 10, 10, 10, 10, 10, 10, 100,
-			20, 20, 20, 20, 20, 20, 20, 20, 90, 90,
-			30, 30, 30, 30, 30, 30, 30, 80, 80, 80,
-			40, 40, 40, 40, 40, 40, 70, 70, 70, 70,
-			50, 50, 50, 50, 50, 60, 60, 60, 60, 60
+			10, 10, 10, 10, 10, 
+			20, 20, 20, 20, 30,
+			30, 30, 40, 40, 50
 		};
 
 		int rand = random.Next(100000, 999999);
@@ -44,6 +43,13 @@ public class CouponService : ICouponService
         await context.Coupons.AddAsync(coupon);
         await context.SaveChangesAsync();
         return coupon;
+	}
+
+
+	public async Task<Coupon> ReadByCode(string code)
+	{
+		Coupon coupon = await context.Coupons.FirstOrDefaultAsync(c => c.Code == code);
+		return coupon;
 	}
 
 }

@@ -11,7 +11,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<ComicService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<CouponService>();
-builder.Services.AddScoped<PurchaseService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -24,7 +24,7 @@ public class AppDbContext : DbContext
 		builder.Entity<Comic>().Property(c => c.IsRare).HasDefaultValue(false);
 	
 		builder.Entity<User>().Property(u => u.Email).IsRequired().HasMaxLength(50);
-		builder.Entity<User>().Property(u => u.Password).IsRequired().HasMaxLength(30);
+		builder.Entity<User>().Property(u => u.Password).IsRequired().HasMaxLength(150);
 		builder.Entity<User>().Property(u => u.Name).IsRequired().HasMaxLength(50);
 		builder.Entity<User>().Property(u => u.IsAdmin).IsRequired().HasDefaultValue(false);
 
