@@ -51,6 +51,7 @@ public class PurchaseService : IPurchaseService
 		};
 
         await context.Purchases.AddAsync(purchase);
+		context.Coupons.Remove(coupon);
         await context.SaveChangesAsync();
 		return purchase;
 
