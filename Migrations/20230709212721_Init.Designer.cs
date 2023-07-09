@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComicShop_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230707080755_AlterPasswords")]
-    partial class AlterPasswords
+    [Migration("20230709212721_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,10 +118,6 @@ namespace ComicShop_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ComicId");
-
-                    b.HasIndex("UserId");
-
                     b.ToTable("Purchases");
                 });
 
@@ -136,11 +132,6 @@ namespace ComicShop_api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<bool>("IsAdmin")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -151,28 +142,13 @@ namespace ComicShop_api.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
+                    b.Property<string>("Role")
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Purchase", b =>
-                {
-                    b.HasOne("Comic", "Comic")
-                        .WithMany()
-                        .HasForeignKey("ComicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comic");
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

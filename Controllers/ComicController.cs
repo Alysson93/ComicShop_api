@@ -32,7 +32,6 @@ public class ComicController : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = "admin")]
-
     public async Task<IActionResult> Post([FromBody] CreateComicDto c)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);

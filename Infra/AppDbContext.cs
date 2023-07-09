@@ -26,11 +26,11 @@ public class AppDbContext : DbContext
 		builder.Entity<User>().Property(u => u.Email).IsRequired().HasMaxLength(50);
 		builder.Entity<User>().Property(u => u.Password).IsRequired().HasMaxLength(150);
 		builder.Entity<User>().Property(u => u.Name).IsRequired().HasMaxLength(50);
-		builder.Entity<User>().Property(u => u.Role).IsRequired().HasMaxLength(15);
+		builder.Entity<User>().Property(u => u.Role).IsRequired(false).HasMaxLength(15);
 
 		builder.Entity<Purchase>().Property(p => p.Coupon).IsRequired(false).HasMaxLength(6);
 
-		builder.Entity<Coupon>().Property(c => c.Code).IsRequired().HasMaxLength(6);
+		builder.Entity<Coupon>().Property(c => c.Code).IsRequired(false).HasMaxLength(6);
 
 	}
 

@@ -5,20 +5,20 @@
 namespace ComicShop_api.Migrations
 {
     /// <inheritdoc />
-    public partial class AlterPasswords : Migration
+    public partial class coupon_notreq : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Password",
-                table: "Users",
-                type: "varchar(150)",
-                maxLength: 150,
-                nullable: false,
+                name: "Code",
+                table: "Coupons",
+                type: "varchar(6)",
+                maxLength: 6,
+                nullable: true,
                 oldClrType: typeof(string),
-                oldType: "varchar(30)",
-                oldMaxLength: 30)
+                oldType: "varchar(6)",
+                oldMaxLength: 6)
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
         }
@@ -26,15 +26,23 @@ namespace ComicShop_api.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.UpdateData(
+                table: "Coupons",
+                keyColumn: "Code",
+                keyValue: null,
+                column: "Code",
+                value: "");
+
             migrationBuilder.AlterColumn<string>(
-                name: "Password",
-                table: "Users",
-                type: "varchar(30)",
-                maxLength: 30,
+                name: "Code",
+                table: "Coupons",
+                type: "varchar(6)",
+                maxLength: 6,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "varchar(150)",
-                oldMaxLength: 150)
+                oldType: "varchar(6)",
+                oldMaxLength: 6,
+                oldNullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
         }

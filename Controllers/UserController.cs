@@ -34,7 +34,6 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Post([FromBody] CreateUserDto u)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);

@@ -45,6 +45,7 @@ public class PurchaseController : ControllerBase
     }
 
     [HttpGet("shop/{id}")]
+    [Authorize]
     public async Task<IActionResult> GetPurchases([FromRoute] Guid id)
     {
         try {

@@ -33,10 +33,10 @@ public class PurchaseService : IPurchaseService
 		context.Comics.Update(comic);
 		await context.SaveChangesAsync();
 
-		float discount = 1;
+		float discount = 0;
 		Coupon coupon = await new CouponService(context).ReadByCode(data.Coupon);
 		if (coupon != null) {
-			if (comic.IsRare && !coupon.IsRare) discount = 1;
+			if (comic.IsRare && !coupon.IsRare) discount = 0;
 			else discount = (float)coupon.Discount / 100;
 		}
 
@@ -44,14 +44,14 @@ public class PurchaseService : IPurchaseService
 		{
 			ComicId = data.ComicId,
 			UserId = data.UserId,
-			Coupon = data.Coupon,
+			Coupon = coupon != null ? data.Coupon : "",
 			Date = DateTime.Now,
 			Quantity = data.Quantity,
-			TotalValue = comic.Price * data.Quantity * discount
+			TotalValue = (comic.Price * data.Quantity) - ( comic.Price * data.Quantity * discount)
 		};
 
         await context.Purchases.AddAsync(purchase);
-		context.Coupons.Remove(coupon);
+		if (coupon != null ) context.Coupons.Remove(coupon);
         await context.SaveChangesAsync();
 		return purchase;
 

@@ -67,7 +67,6 @@ namespace ComicShop_api.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Code")
-                        .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("varchar(6)");
 
@@ -140,8 +139,8 @@ namespace ComicShop_api.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 

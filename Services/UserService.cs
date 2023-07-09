@@ -25,7 +25,8 @@ public class UserService : IUserService
         {
             Email = u.Email,
             Password = password,
-            Name = u.Name
+            Name = u.Name,
+			Role = "client"
         };
         await context.Users.AddAsync(user);
         await context.SaveChangesAsync();

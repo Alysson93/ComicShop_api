@@ -10,7 +10,6 @@ public class Comic
 	public float Price { get; set; }
 	public int Quantity { get; set; }
 	public bool IsRare { get; set; }
-
 }
 
 public record CreateComicDto(
