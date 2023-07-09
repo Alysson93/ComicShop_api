@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ComicShop_api.Controllers;
 
@@ -30,6 +31,8 @@ public class ComicController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "admin")]
+
     public async Task<IActionResult> Post([FromBody] CreateComicDto c)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -38,6 +41,8 @@ public class ComicController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "admin")]
+
     public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] CreateComicDto c)
     {
 
@@ -48,6 +53,7 @@ public class ComicController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
         var comic = await comicService.ReadById(id);

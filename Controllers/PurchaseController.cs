@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ComicShop_api.Controllers;
 
@@ -16,6 +17,7 @@ public class PurchaseController : ControllerBase
 
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Post([FromBody] PurchaseDto data)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -30,6 +32,7 @@ public class PurchaseController : ControllerBase
 
 
     [HttpGet("stock/{id}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> GetStock([FromRoute] Guid id)
     {
         try {

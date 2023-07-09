@@ -26,7 +26,7 @@ public class AppDbContext : DbContext
 		builder.Entity<User>().Property(u => u.Email).IsRequired().HasMaxLength(50);
 		builder.Entity<User>().Property(u => u.Password).IsRequired().HasMaxLength(150);
 		builder.Entity<User>().Property(u => u.Name).IsRequired().HasMaxLength(50);
-		builder.Entity<User>().Property(u => u.IsAdmin).IsRequired().HasDefaultValue(false);
+		builder.Entity<User>().Property(u => u.Role).IsRequired().HasMaxLength(15);
 
 		builder.Entity<Purchase>().Property(p => p.Coupon).IsRequired(false).HasMaxLength(6);
 

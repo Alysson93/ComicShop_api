@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ComicShop_api.Controllers;
 
@@ -15,6 +16,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Get()
     {
         List<User> users = await userService.Read();
@@ -23,6 +25,7 @@ public class UserController : ControllerBase
 
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
         User user = await userService.ReadById(id);
@@ -31,6 +34,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Post([FromBody] CreateUserDto u)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -46,7 +50,9 @@ public class UserController : ControllerBase
         if (!ModelState.IsValid) return BadRequest(ModelState);
         User user = await userService.Login(u);
         if (user == null) return BadRequest("User does not exist");
-        return Ok(user);
+        var token = TokenService.GenerateToken(user);
+        user.Password = "";
+        return Ok(new {user = user, token = token});
     }
 
 }

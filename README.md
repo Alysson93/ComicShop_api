@@ -8,13 +8,8 @@
 <ol>
 	<li>Clone este repositório;</li>
 	<li>No terminal, navegue até o diretório raiz do projeto clonado em sua máquina.</li>
-	<li>Crie o arquivo "appsettings.Development.json"</li>
-	<li>Adicione as segintes linhas no arquivo, lembrando de substituir as informações genéricas pelas informações reais do seu banco de dados:</li>
-	<pre>
-{
-  	"ConnectionString": "Host=localhost;Database=comicshop;Username=root;Password="
-}
-	</pre>
+	<li>Crie o arquivo ".env"</li>
+	<li>Copie o conteúdo do arquivo ".env.example" e cole no arquivo ".env" fazendo as devidas substituições nas variáveis de ambiente.</li>
 	<li>Ececute o comando "dotnet restore"</li>
 	<li>Ececute o comando "dotnet tool restore"</li>
 	<li>Execute o comando "dotnet ef database update"</li>
