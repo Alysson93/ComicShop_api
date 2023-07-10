@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ComicShop_api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("v1/[controller]")]
 public class PurchaseController : ControllerBase
 {
 

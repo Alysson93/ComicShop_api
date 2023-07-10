@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ComicShop_api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("v1/[controller]")]
 public class UserController : ControllerBase
 {
 
@@ -15,6 +15,12 @@ public class UserController : ControllerBase
         this.userService = userService;
     }
 
+
+    /*
+        Rota Get /user
+        Deve retornar todos os usuários do sistema.
+        Disponível apenas para usuários autenticados como administradores
+    */
     [HttpGet]
     [Authorize(Roles = "admin")]
     public async Task<IActionResult> Get()
@@ -24,6 +30,11 @@ public class UserController : ControllerBase
     }
 
 
+    /*
+        Rota Get /user/{id}
+        Deve retornar um usuário a partir do seu id
+        Disponível apenas para usuários autenticados como administradores
+    */
     [HttpGet("{id}")]
     [Authorize]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
@@ -33,6 +44,15 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
+
+    /*
+        Rota POST /user
+        Deve cadastrar um novo usuário.
+        Recebe no corpo da requisição, um CreateUseDto
+        Por padrão, o usuário cadastrado será um cliente comum.
+        A alteração para 'usuário admin' (por enquanto) deve ser feita pelo mantenedor do sistema.
+        Retorna o usuário cadastrado.
+    */
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] CreateUserDto u)
     {
@@ -43,6 +63,13 @@ public class UserController : ControllerBase
         return CreatedAtAction(nameof(Login), new { email = user.Email }, user);
     }
 
+
+    /*
+        Rota POST /user/login
+        Deve gerar um token bearer para autenticar o usuário.
+        Recebe no corpo da requisição, um LogUseDto
+        Retorna o usuário logado e o token.
+    */
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LogUserDto u)
     {

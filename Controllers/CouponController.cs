@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ComicShop_api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("v1/[controller]")]
 public class CouponController : ControllerBase
 {
 

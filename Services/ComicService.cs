@@ -3,7 +3,10 @@ using Microsoft.EntityFrameworkCore;
 public interface IComicService {
 	public Task<Comic> Create(CreateComicDto c);
 	public Task<List<Comic>> Read();
+	public Task<List<Comic>> ReadQtd(int skip=0, int take=25);
 	public Task<Comic> ReadById(Guid id);
+	public Task<List<Comic>> ReadByAuthor(string author);
+	public Task<List<Comic>> ReadByYear(int year);
 	public Task Update(Guid id, CreateComicDto comic);
 	public Task Delete(Guid id);
 }
@@ -42,12 +45,29 @@ public class ComicService : IComicService
 		return comics;
 	}
 
+	public async Task<List<Comic>> ReadQtd(int skip=0, int take=25)
+	{
+		List<Comic> comics = await this.context.Comics.Skip(skip).Take(take).ToListAsync();
+		return comics;
+	}
+
 	public async Task<Comic> ReadById(Guid id)
 	{
 		Comic comic = await context.Comics.FirstOrDefaultAsync(c => c.Id == id);
 		return comic;
 	}
 
+	public async Task<List<Comic>> ReadByAuthor(string author)
+	{
+		List<Comic> comics = await this.context.Comics.Where(c => c.Author == author).ToListAsync();
+		return comics;		
+	}
+
+	public async Task<List<Comic>> ReadByYear(int year)
+	{
+		List<Comic> comics = await this.context.Comics.Where(c => c.Year == year).ToListAsync();
+		return comics;		
+	}
 	public async Task Update(Guid id, CreateComicDto c)
 	{
 		var comic = await this.ReadById(id);
