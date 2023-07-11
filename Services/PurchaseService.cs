@@ -35,6 +35,13 @@ public class PurchaseService : IPurchaseService
 
 		float discount = 0;
 		Coupon coupon = await new CouponService(context).ReadByCode(data.Coupon);
+
+		if (DateTime.Now > coupon.Validate){
+			context.Coupons.Remove(coupon);
+			await context.SaveChangesAsync();
+			throw new Exception("Coupon out of validate");
+		}
+
 		if (coupon != null) {
 			if (comic.IsRare && !coupon.IsRare) discount = 0;
 			else discount = (float)coupon.Discount / 100;
